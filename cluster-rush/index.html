@@ -6,15 +6,33 @@
     <title>Cluster Rush</title>
     <link rel="icon" href="./icon.jpg">
     <style>
-      /* a style sheet needs to be present for cursor hiding and custom cursors to work. */
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden; 
+        background: #222C36;
+      }
+      canvas {
+        width: 100vw;
+        height: 100vh;
+        display: block;
+      }
     </style>
   </head>
   <body>
-    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="480px" width="640px"></canvas>
+    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
     <script type="text/javascript">
+      function resizeCanvas() {
+        var canvas = document.getElementById("canvas");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas(); 
+
       var Module = {
         TOTAL_MEMORY: 268435456,
-        errorhandler: null, // arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
+        errorhandler: null, 
         compatibilitycheck: null,
         backgroundColor: "#222C36",
         splashStyle: "Dark",
